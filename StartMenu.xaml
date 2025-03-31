@@ -1,0 +1,184 @@
+﻿<Window x:Class="togizkumalakUI.StartMenu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:togizkumalakUI"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        Icon="icon\iconTwo.ico"
+        WindowState="Maximized"
+        Title="Главное меню" Height="650" Width="1000">
+
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="LightBlue"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="100"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="(Button.RenderTransform).(ScaleTransform.ScaleX)" To="1.1" Duration="0:0:0.2"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="(Button.RenderTransform).(ScaleTransform.ScaleY)" To="1.1" Duration="0:0:0.2"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="LightSkyBlue" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="(Button.RenderTransform).(ScaleTransform.ScaleX)" To="1.0" Duration="0:0:0.2"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="(Button.RenderTransform).(ScaleTransform.ScaleY)" To="1.0" Duration="0:0:0.2"/>
+                                        <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="LightBlue" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="PowderBlue"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="MaxLength" Value="10"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Background" Value="LightCyan"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border x:Name="Border" Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8"
+                                Padding="4">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="Border" Property="BorderBrush" Value="DodgerBlue"/>
+                                <Setter TargetName="Border" Property="Background" Value="White"/>
+                                <Setter TargetName="Border" Property="BorderThickness" Value="3"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="WindowRulesStyle" TargetType="Border">
+            <Setter Property="Background"  Value="LightGoldenrodYellow"/>
+            <Setter Property="CornerRadius"  Value="25"/>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="layoutMain" Background="Honeydew">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+        <!-- Окно с правилами -->
+        <Border Grid.ColumnSpan="9" Grid.RowSpan="9" Panel.ZIndex="3" Visibility="Collapsed"
+                VerticalAlignment="Center" HorizontalAlignment="Center" 
+            Height="600" Width="800"  x:Name="WindowRules" Style="{StaticResource WindowRulesStyle}">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="10" Opacity="0.2" Direction="10"/>
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel x:Name="Heading" Grid.Row="0">
+                    <TextBlock Text="Правила игры Тоғыз-құмалақ" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                       FontSize="32" FontFamily="Verdana"/>
+                </StackPanel>
+
+                <StackPanel x:Name="MainTextRules" Grid.Row="1">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="5" Height="450">
+                        <TextBlock TextWrapping="Wrap" FontFamily="Verdana" FontSize="16" TextAlignment="Justify" LineHeight="30" Padding="10" Foreground="DarkSlateGray">
+ <Run Text="Описание игрового поля:" FontWeight="Bold" FontSize="18"/> <LineBreak/>
+• Двух рядов по девять лунок в каждом ряду (всего 18 лунок).<LineBreak/>
+• В каждой лунке изначально находится по 9 кумалаков (шариков).<LineBreak/>
+• У каждого игрока есть казан — специальная лунка для сбора захваченных кумалаков. В казане хранится количество очков (захваченных шариков).<LineBreak/>
+     <Run Text="Цель игры" FontWeight="Bold" FontSize="18"/> <LineBreak/>
+Цель игры заключается в том, чтобы собрать как можно больше кумалаков в свой казан. Побеждает тот игрок, кто первым наберет 81 кумалак или больше (что составляет более половины от общего числа кумалаков — всего их 162).<LineBreak/>
+     <Run Text="Ход игры" FontWeight="Bold" FontSize="18"/> <LineBreak/>
+1.  Первый ход делает игрок, которому принадлежит верхний ряд лунок. Игрок берет все кумалаки из любой своей лунки и по одному раскладывает их в лунки против часовой стрелки, начиная с лунки, следующей за той, из которой он взял кумалаки.
+<LineBreak/>
+2.  Процесс раскладывания продолжается до тех пор, пока все кумалаки не будут разложены по лункам. Если последний кумалак попадает в лунку соперника, и в этой лунке на момент попадания было четное количество кумалаков (включая добавленный), игрок забирает все кумалаки из этой лунки в свой казан.
+<LineBreak/>
+3.  Если последний кумалак попадает в лунку, где становится три кумалака (два предыдущих и один новый), эта лунка может стать тұздык. В этой ситуации лунка становится личной для игрока, кто захватил ее, и все кумалаки, попавшие в нее в будущем, будут автоматически переходить в его казан. Тұздык можно захватить только один раз за игру, и не может быть захвачена 9-я лунка.
+<LineBreak/>
+4.  Игроки продолжают делать ходы по очереди. Важно, чтобы все лунки всегда оставались с кумалаками. Если в ходе раскладывания кумалаки заканчиваются, игрок пропускает ход.                        
+<LineBreak/>
+     <Run Text="Конец игры" FontWeight="Bold" FontSize="18"/> <LineBreak/> 
+ Игра продолжается до тех пор, пока один из игроков не наберет 81 кумалак или более. Если все кумалаки сосредоточены в казанах игроков или в лунках одного из них, игра завершается. <LineBreak/>
+     <Run Text="Дополнительные правила" FontWeight="Bold" FontSize="18"/> <LineBreak/> 
+• Тұздык: Игрок может захватить только одну лунку соперника, объявив ее тұздык. Для этого нужно, чтобы в ходе раскладывания последний кумалак попал в лунку, где уже находятся два кумалака. Лунка сразу становится личной для этого игрока.
+<LineBreak/> 
+• Победа по захвату: Если один из игроков первым захватил все кумалаки противника, игра заканчивается его победой.
+                        </TextBlock>
+                    </ScrollViewer>
+                </StackPanel>
+
+                <StackPanel x:Name="CloseWindow" Grid.Row="2" VerticalAlignment="Bottom" Margin="10">
+                    <Button Style="{StaticResource ButtonStyle}" Content="Закрыть" Click="Button_Click_Rules_Close"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        
+
+    <!-- Главное содержимое интерфейса -->
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0">
+        <TextBlock Text="Togyz-kumalak" FontSize="48" Foreground="Black" Opacity="1"/>
+    </StackPanel>
+
+    <!-- Ввод имени игрока 2 -->
+    <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Grid.Row="1">
+        <TextBlock x:Name="Player2"  Text="Введите имя игрока 2" Padding="5" FontFamily="Verdana" FontSize="24"/>
+        <TextBox x:Name="Player2NameTextBox" Style="{StaticResource TextBoxStyle}"/>
+    </DockPanel>
+
+    <!-- Ввод имени игрока 1 -->
+    <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Grid.Row="2">
+        <TextBlock Text="Введите имя игрока 1" Padding="5" FontFamily="Verdana" FontSize="24"/>
+        <TextBox x:Name="Player1NameTextBox" Style="{StaticResource TextBoxStyle}"/>
+    </DockPanel>
+
+    <!-- Кнопка "START" -->
+    <StackPanel Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Button Content="Начать" Click="Button_Click_Start" Style="{StaticResource ButtonStyle}"></Button>
+    </StackPanel>
+
+    <!-- Кнопка "RULES" -->
+    <StackPanel Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="10">
+        <Button Content="Правила" Style="{StaticResource ButtonStyle}" Click="Button_Click_Rules_Open" Width="105" Height="60"/>
+    </StackPanel>
+        <Button Content="Выйти" Grid.Row="4" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Left" Width="105" Height="60" Margin="10" Click="GameClose_ButtonClick"/>
+    </Grid>
+</Window>

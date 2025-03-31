@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="icon\crown.png" />
+    <None Remove="icon\IconTwo.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="icon\crown.png" />
+    <Resource Include="icon\IconTwo.ico" />
+  </ItemGroup>
+
+</Project>
