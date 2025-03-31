@@ -9,10 +9,10 @@ public partial class MainWindow : Window
     public int firstplayer { get; set; }
     public class Field
     {
-        public static int[] _fieldPlayer2 = new int[9] { 1, 9, 9, 9, 9, 9, 9, 9, 9 };
-        public static int kazanPlayer1 = 0;
-        public static int kazanPlayer2 = 0;
-        public static int[] _fieldPlayer1 = new int[9] { 1, 9, 9, 9, 9, 9, 9, 9, 9 };
+        public static int[] _fieldPlayer2 = new int[9] { 9, 9, 9, 9, 9, 9, 9, 9, 9 };
+        public static int kazanPlayer1 = 80;
+        public static int kazanPlayer2 = 80;
+        public static int[] _fieldPlayer1 = new int[9] { 9, 9, 9, 9, 9, 9, 9, 9, 9 };
     }
     public MainWindow(string InputnamePlayer1, string InputnamePlayer2, int motionPlayer)
     {
